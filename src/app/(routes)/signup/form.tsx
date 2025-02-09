@@ -4,11 +4,14 @@ import { SignUp } from './action'
 import { googleSignIn } from './action'
 const page = () => {
     const [message, setMessage] = useState('');
+    const [loading,setLoadiing]=useState(false)
     const handleClick = async (e: React.FormEvent<HTMLFormElement>) => {
+        setLoadiing(true)
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         const res = await SignUp(data);
         setMessage(res.status)
+        setLoadiing(false)
     }
     return (
         <div className='w-full h-screen flex flex-col'>
@@ -67,7 +70,7 @@ const page = () => {
                 <button type='submit'
                     className='p-2 my-5 w-[350px]
         bg-blue-500 text-white'>
-                    Sign Up
+                    {loading?'Sigining Up':'Sign Up'}
                 </button>
                 {message && <p>
                     {message === 'failed' ?
