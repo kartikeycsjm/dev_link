@@ -1,8 +1,14 @@
 import React from 'react'
-
-const page = () => {
+import Form from './form'
+import { redirect } from 'next/navigation'
+import { auth } from '@/auth'
+const page =async () => {
+  let session=await auth()
+  if(session){
+    redirect('/')
+  }
   return (
-    <div>page</div>
+    <Form />
   )
 }
 
