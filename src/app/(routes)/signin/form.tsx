@@ -7,11 +7,14 @@ import { useEffect, useState } from "react"
 const LoginPage = () => {
     const router=useRouter()
     let [message, setMessage] = useState('')
+    let [loading,setLoading]=useState(false);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        setLoading(true)
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         const res = await LogInCredentials(data);
         setMessage(res.status)
+        setLoading(false)
     }
     useEffect(()=>{
         router.refresh()
@@ -70,7 +73,7 @@ const LoginPage = () => {
                     <button type='submit'
                         className='p-2 my-5 w-[360px]
                                 bg-blue-500 text-white'>
-                        Sign In
+                        {loading?'siging in':'Sign In'}
                     </button>
                 </form>
                 {message && <p>
