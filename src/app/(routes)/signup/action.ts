@@ -31,10 +31,9 @@ export async function SignUp(formData: FormData) {
               `,
             text: `you are welcome at devlink`,
         });
-        return { status: 'success' }
+        return { status : 'success' }
     } catch (error) {
         console.log(error);
-        
         return { status: 'failed', error: (error as Error).message }
     }
 }

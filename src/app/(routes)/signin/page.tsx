@@ -1,6 +1,6 @@
 import {redirect} from 'next/navigation'
 import React from 'react'
-import { LoginPage } from './form'
+import LoginPage  from './form'
 import { auth } from '@/auth'
 const page = async() => {
   const session=await auth();
