@@ -41,14 +41,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })
     ],
     callbacks: {
-        // signIn:async()=>{
-        //     return false
-        // },
+        signIn:async({user,account})=>{
+            if(account?.provider==='google'){
+                return true
+            }
+            if(account?.provider==='credentials'){
+                return true
+            }
+            return false
+        },
         
         // jwt:async()=>{
 
         // },
-
+        
         // session:async()=>{
 
         // }
